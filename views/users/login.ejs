@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css"/>
+  </head>
+  <body>
+    <div class="login-form">
+
+      <div class="social-media">
+        <button class="fb"><img src="/images/fb.png" alt=""></button>
+        <button class="google"><img src="/images/google.png" alt=""></button>
+      </div>
+
+      <h6>Log In</h6>
+
+      <form action="players/login" method="post">
+        <div class="textbox">
+          <input name="Username" type="text" placeholder="Username Or Email">
+          <span class="check-message hidden">Required</span>
+        </div>
+
+        <div class="textbox">
+          <input name="Password" type="password" placeholder="Password">
+          <span class="check-message hidden">Required</span>
+        </div>
+
+        <div class="options">
+          <label class="remember-me">
+            <span class="checkbox">
+              <input type="checkbox">
+              <span class="checked"></span>
+            </span>
+            Remember me
+          </label>
+
+          <a href="#">Forgot Your Password</a>
+        </div>
+
+        <input type="submit" value="Log In Now" class="login-btn" >
+        <div class="privacy-link">
+          <a href="#">Privacy Policy</a>
+        </div>
+      </form>
+
+      <div class="dont-have-account">
+        Don't have Games account?
+        <a href="/users/signup">Sign Up</a>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
+    <script src="/javascripts/login.js"></script>
+</body>
+</html>

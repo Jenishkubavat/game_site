@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300|Libre+Baskerville');
+
+#team-section{
+    position:relative;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    top: 100vh;
+}
+ #team-section h1{
+    font-size: 45px;
+  }
+  
+  #team-section h1{ 
+    font-family: 'Libre Baskerville', serif;
+    letter-spacing: 3px;
+  }
+  #team-section h2{
+    font-family: 'Libre Baskerville', serif;
+    letter-spacing: 3px;
+  }
+  #team-section p{
+    font-family: 'Josefin Sans', sans-serif;
+    line-height: 1.2;
+    letter-spacing: .5px;
+  }
+  
+.title-card {
+    text-align: center;
+    margin: auto 20px;
+  }
+  
+  .container-c {
+    margin: 0 0.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .flip-card {
+    width: 325px;
+    height: 500px;
+    padding: .75em;
+  }
+  
+  .back {
+    background-color: #13050e;
+    color: #fff;
+    transform: rotateY(180deg);
+    height: 550px;
+  }
+   
+  .back .back-header {
+    height: 45%;
+    text-align: center;
+  }
+  
+  .back .back-header img {
+    height: 85%;
+    margin: 20px;
+    padding: 1em;
+  }
+  
+  .front img {
+    display: block;
+    margin: auto;
+    width: 100%;
+  }
+  
+  .inner {
+    position: relative;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .back, .front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card:hover .inner{
+    transform: rotateY(180deg);
+  }
+  
+  .back .back-footer{
+    height: 55%;
+    padding: 15px;
+  }
+  
+  .back-footer a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: inline-block;
+    padding: 7px 5px; 
+    margin: 30px 10px;
+    transition: .8s;
+    color: var(--text-primary);
+  }
+  
+  
+  .back-footer a:hover {
+    color: var(--text-secondary);
+  }
