@@ -14,7 +14,7 @@
 
 **Prerequisites for the project**
 - [Node /npm](https://nodejs.org/en/)
-- [MongoDB](https://www.mongodb.com/try/download/community);
+- [MongoDB](https://www.mongodb.com/try/download/community)
 
 ## how to install the project
 go into the project folder and run
