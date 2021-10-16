@@ -81,7 +81,7 @@ main{
 }
 
 
-.side-link .bi{
+.side-link i{
   color:var(--red);
   font-size: 2rem ;
   margin: 1.5rem;

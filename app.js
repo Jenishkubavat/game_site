@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var gameRouter = require('./routes/games');
 var app = express();
 
 // database setup
@@ -29,6 +29,7 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/games',gameRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
