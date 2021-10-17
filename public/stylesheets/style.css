@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Butcherman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bevan&family=Oxygen:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Waiting+for+the+Sunrise&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url(./background.css);
 @import url(./team-section.css);
+@import url(./contact_us.css);
+
 :root{
   font-size: 16px;
   --text-primary:#f8f8f2;
@@ -18,7 +20,8 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+font-size:1rem;
+font-family: 'Oxygen', sans-serif;
 
 
 }
@@ -43,8 +46,21 @@ section{
 main{
   margin-left: 5rem;
 }
-
-
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Bevan';
+}
+h1{
+  font-size:6.063rem;
+  letter-spacing:-1.5px;
+}
+h2{
+  font-size:3.813rem;
+  letter-spacing:-0.5px;
+}
+h3{
+  font-size:3rem;
+  letter-spacing:0;
+}
 /* side bar */
 .sidebar{
   position: fixed;
@@ -61,37 +77,61 @@ main{
   flex-direction: column;
   align-items: center;
   height: 100%;
+  justify-content: center;
+
 
 }
 
-.side-item{
+.nav-item{
   width: 100%;
 }
-.side-item:last-child{
+.nav-item:last-child{
   margin-top: auto;
 
 }
-.side-link{
+.nav-link{
   display: flex;
   align-items: center;
   height:5rem;
-  text-decoration: none;
   transition:var(--transition-speed);
-  filter: grayscale(100%) opacity(0.7);
+  justify-content: center;
 }
 
 
-.side-link i{
-  color:var(--red);
+.nav-link i{
+  color:var(--text-primary);
   font-size: 2rem ;
   margin: 1.5rem;
  
 }
-
-.sidebar:hover .side-link  {
-  transition:var(--transition-speed);
-  color:var(--red);
+.dropdown-toggle >ul ,li {
+  width:fit-content !important;
 }
+.dropdown-menu{
+  min-width: 0;
+  background-color:var(--bg-secondary);
+
+}
+.dropdown-item{
+  display: flex;
+  width:fit-content;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+    
+}
+.dropdown-item i {
+  font-size:1.2rem;
+  color:var(--text-secondary);
+  margin: 1rem ;
+}
+
+.nav-link:hover i  {
+  transition:var(--transition-speed);
+  color:var(--text-secondary);
+}
+
+
 #home-section{
   display:flex;
   flex-wrap: nowrap;
@@ -112,9 +152,7 @@ top: 30%;
 
 }
  .title h1{
-   font-size:4rem;
   width: 100%;
-  font-family: 'Butcherman'!important;
   background: -webkit-linear-gradient(var(--Orange), var(--red));
  background-clip: text;
  -webkit-background-clip: text;
@@ -128,7 +166,7 @@ top: 30%;
 .button-container {
   position: absolute;
   display: inline-block;
-  top:60%;
+  top:80%;
 }
 .button-container .trigger {
   position: absolute;
@@ -177,9 +215,9 @@ top: 30%;
   padding: 10px 30px;
   font-size: 18px;
   display: block;
-  font-family: Helvetica;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-family: 'Oxygen',sans-serif;
+  font-weight:600;
+  letter-spacing: 1.25px;
   position: relative;
   transition: color 0.3s ease-in-out;
 }
