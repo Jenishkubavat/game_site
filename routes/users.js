@@ -1,35 +1,50 @@
 var express = require('express');
 var Player = require('../module/player')
 const bcrypt = require('bcrypt');
-const passport=require('passport');
+const { route } = require('.');
+const passport = require('passport');
 const router = express.Router();
-// const insializePassport = require('../bin/passport-config');
-// insializePassport(passport);
+
+
+
 
 /* GET users listing. */
-router.get('/',  function(req,  res, next) {
-  res.send('respond with a resource');
+router.get('/player',  function(req,  res, next) {
+  res.render('users/player_page',{
+    data:{
+      title:`${req.user.name} wellcome`,
+      name:`${req.user.name}`
+      
+    }
+  });
+
 });
 router.get('/login', function(req, res, next) {
-  res.render('users/login', { title: 'log-in page'});
+  res.render('users/login', {
+    data:{
+      title: 'log-in page',
+      name:`${0}`,
+      password:`${0}`
+    }
+  });
 
 });
 router.get('/signup', function(req, res, next) {
   res.render('users/signup', { title: 'signup page' ,player: new Player()});
 
 });
-router.post('/profile', async function(req, res, next) {
-  const hashedPassworld = await bcrypt.hash(req.body.Password,10)
+router.post('/signup', async function(req, res, next) {
+  const hashedPassword = await bcrypt.hash(req.body.password,10)
   const player = new Player({
-    email: req.body.Email,
-    name:req.body.Username,
-    password: hashedPassworld
+    email: req.body.email,
+    name:req.body.username,
+    password: hashedPassword
   });
   try{
     const newPlayer= await player.save();
-    res.render('users/player_page',{
+    res.render('users/login',{
       data:{
-        title:`${newPlayer.name} wellcome`,
+        title: 'log-in page',
         name:`${newPlayer.name}`
       }
     });
@@ -40,8 +55,11 @@ router.post('/profile', async function(req, res, next) {
     });
     alert('Error saving');
   }
-
-
 });
 
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/users/player',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
 module.exports = router;

@@ -4,16 +4,38 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
-
+const flash = require('express-flash');
+const session = require('express-session');
+const passport=require('passport');
+const MongoStore =require('connect-mongo');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var gameRouter = require('./routes/games');
 var app = express();
+require("./module/passport-config")(passport)
 
 // database setup
-mongoose.connect('mongodb://localhost:27017/game_site');
+ const dbString ='mongodb://localhost:27017/game_site';
+ const dbOptions ={
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+ }
+ const connection= mongoose.connect(dbString, dbOptions)
+ const sessionStore= MongoStore.create({
+  mongoUrl: dbString
+})
+app.use(session({
+  secret:'secret',
+  resave:false,
+  saveUninitialized:false,
+  store:sessionStore
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash())
+
 mongoose.connection.on('error', (err) => console.error(err));
-mongoose.connection.once('open', () =>console.log('done!!'))
+mongoose.connection.once('open', () =>console.log('done!!'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +45,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false,limit: '10mb' }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));

@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title><%= title %></title>
+    <title><%= data.title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Hind&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css"/>
@@ -17,17 +17,28 @@
 
       <h6>Log In</h6>
 
-      <form action="/users/profile" method="POST">
+      <form action="/users/login" method="POST">
         <div class="textbox">
-        <input name="Username" type="text" placeholder="Username Or Email" value=""/> 
+          <% if(data.name==0){ %> 
+        <input name="username" type="text" placeholder="Username Or Email" /> 
           <span class="check-message hidden">Required</span>
         </div>
 
         <div class="textbox">
-          <input name="Password" type="password" placeholder="Password"value=""/> 
+          <input name="password" type="password" placeholder="Password"/> 
           <span class="check-message hidden">Required</span>
-        </div>
+        </div> 
+<% } else  { %>
+  <input name="username" type="text" placeholder="Username Or Email" value="<%= data.name %> "/> 
+  <span class="check-message hidden">Required</span>
+</div>
 
+<div class="textbox">
+  <input name="password" type="password" placeholder="Password"value=""/> 
+  <span class="check-message hidden">Required</span>
+</div> 
+<%}%>
+ 
         <div class="options">
           <label class="remember-me">
             <span class="checkbox">
