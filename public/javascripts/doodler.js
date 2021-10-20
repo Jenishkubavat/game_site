@@ -181,6 +181,22 @@ document.addEventListener('DOMContentLoaded', () => {
         moveStraight()
       }
     }
+    function showGameOverEl() {
+      // Hide Canvas
+      canvas.hidden = true;
+      // Container
+      gameOverEl.textContent = '';
+      gameOverEl.classList.add('game-over-container');
+  
+      // Button
+      const playAgainBtn = document.createElement('button');
+      playAgainBtn.setAttribute('onclick', 'startGame()');
+      playAgainBtn.textContent = 'Play Again';
+      // Append
+      gameOverEl.append(title, playAgainBtn);
+      body.appendChild(gameOverEl);
+    }
+    
   
     function gameOver() {
       isGameOver = true
@@ -193,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(downTimerId)
       clearInterval(leftTimerId)
       clearInterval(rightTimerId)
+    showGameOverEl();
     }
   
   

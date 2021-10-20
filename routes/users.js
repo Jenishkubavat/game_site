@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 /* GET users listing. */
-router.get('/player',  function(req,  res, next) {
+router.get('/player', checkAuthenticated, function(req,  res, next) {
   res.render('users/player_page',{
     data:{
       title:`${req.user.name} wellcome`,
@@ -19,7 +19,7 @@ router.get('/player',  function(req,  res, next) {
   });
 
 });
-router.get('/login', function(req, res, next) {
+router.get('/login',checkNotAuthenticated, function(req, res, next) {
   res.render('users/login', {
     data:{
       title: 'log-in page',
@@ -29,11 +29,11 @@ router.get('/login', function(req, res, next) {
   });
 
 });
-router.get('/signup', function(req, res, next) {
+router.get('/signup',checkNotAuthenticated, function(req, res, next) {
   res.render('users/signup', { title: 'signup page' ,player: new Player()});
 
 });
-router.post('/signup', async function(req, res, next) {
+router.post('/signup',checkNotAuthenticated, async function(req, res, next) {
   const hashedPassword = await bcrypt.hash(req.body.password,10)
   const player = new Player({
     email: req.body.email,
@@ -57,9 +57,24 @@ router.post('/signup', async function(req, res, next) {
   }
 });
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login',checkNotAuthenticated, passport.authenticate('local', {
   successRedirect: '/users/player',
   failureRedirect: '/users/login',
   failureFlash: true
 }))
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/users/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/users/player')
+  }
+  next()
+}
+
 module.exports = router;
